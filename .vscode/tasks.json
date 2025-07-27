@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Run Expression Project",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-Wall",
+        "-Iinclude",
+        "main.cpp",
+        "src/constant.cpp",
+        "src/variable.cpp",
+        "src/binary_operation.cpp",
+        "src/add.cpp",
+        "-o",
+        "main",
+        "&&",
+        "./main"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
