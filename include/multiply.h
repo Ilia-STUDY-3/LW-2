@@ -8,11 +8,11 @@ public:
     using BinaryOperation::BinaryOperation;
 
     Value evaluate() const override {
-        return left->evaluate() * right->evaluate();
+        return left_->evaluate() * right_->evaluate();
     }
 
     std::string toString() const override {
-        return "(" + left->toString() + " * " + right->toString() + ")";
+        return "(" + left_->toString() + " * " + right_->toString() + ")";
     }
 
     std::string getType() const override {
@@ -20,7 +20,7 @@ public:
     }
 
     std::unique_ptr<Expression> clone() const override {
-        return std::make_unique<Multiply>(left->clone(), right->clone());
+        return std::make_unique<Multiply>(left_->clone(), right_->clone());
     }
 };
 
