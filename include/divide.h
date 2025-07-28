@@ -5,24 +5,25 @@
 
 class Divide : public BinaryOperation {
 public:
-    using BinaryOperation::BinaryOperation;
+    Divide(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right)
+        : BinaryOperation(std::move(left), std::move(right)) {}
 
-    Value evaluate() const override {
-        Value denominator = right_->evaluate();
-        if (denominator == 0.0) throw std::runtime_error("Division by zero");
-        return left_->evaluate() / denominator;
-    }
+    Value evaluate() const override;
 
-    std::string toString() const override {
-        return "(" + left_->toString() + " / " + right_->toString() + ")";
-    }
+    std::string toString() const override;
 
-    std::string getType() const override {
-        return "Divide";
-    }
+    std::string getType() const override;
 
-    std::unique_ptr<Expression> clone() const override {
-        return std::make_unique<Divide>(left_->clone(), right_->clone());
+    std::unique_ptr<Expression> clone() const override;
+
+    int getPriority() const override;
+
+    std::string getOperatorSymbol() const override;
+
+protected:
+    double apply(double left, double right) const override {
+        // Можно добавить проверку на деление на 0, если хочешь
+        return left / right;
     }
 };
 

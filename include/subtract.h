@@ -15,7 +15,7 @@ public:
 protected:
     int getPriority() const override;
     std::string getOperatorSymbol() const override;
+    double apply(double left, double right) const override; // 👈 добавили
 };
 
 #endif // SUBTRACT_H
-

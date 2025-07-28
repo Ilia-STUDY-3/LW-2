@@ -28,3 +28,7 @@ int Subtract::getPriority() const {
 std::string Subtract::getOperatorSymbol() const {
     return "-";
 }
+
+double Subtract::apply(double left, double right) const {
+    return left - right;
+}

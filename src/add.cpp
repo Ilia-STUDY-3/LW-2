@@ -28,3 +28,7 @@ int Add::getPriority() const {
 std::string Add::getOperatorSymbol() const {
     return "+";
 }
+
+double Add::apply(double left, double right) const {
+    return left + right;
+}
