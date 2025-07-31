@@ -1,7 +1,7 @@
 #include "add.h"
 
-Add::Add(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right)
-    : BinaryOperation(std::move(left), std::move(right)) {}
+Add::Add(std::unique_ptr<Expression> left_, std::unique_ptr<Expression> right_)
+    : BinaryOperation(std::move(left_), std::move(right_)) {}
 
 Value Add::evaluate() const {
     return left_->evaluate() + right_->evaluate();

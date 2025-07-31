@@ -5,12 +5,11 @@
 
 class Divide : public BinaryOperation {
 public:
-    using BinaryOperation::BinaryOperation;
+    Divide(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right)
+        : BinaryOperation(std::move(left), std::move(right)) {}
 
     Value evaluate() const override {
-        Value denominator = right_->evaluate();
-        if (denominator == 0.0) throw std::runtime_error("Division by zero");
-        return left_->evaluate() / denominator;
+        return left_->evaluate() / right_->evaluate();
     }
 
     std::string toString() const override {
@@ -23,6 +22,14 @@ public:
 
     std::unique_ptr<Expression> clone() const override {
         return std::make_unique<Divide>(left_->clone(), right_->clone());
+    }
+
+    int getPriority() const override {
+        return 2;
+    }
+
+    std::string getOperatorSymbol() const override {
+        return "/";
     }
 };
 

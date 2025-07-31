@@ -1,7 +1,7 @@
 #include "subtract.h"
 
-Subtract::Subtract(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right)
-    : BinaryOperation(std::move(left), std::move(right)) {}
+Subtract::Subtract(std::unique_ptr<Expression> left_, std::unique_ptr<Expression> right_)
+    : BinaryOperation(std::move(left_), std::move(right_)) {}
 
 Value Subtract::evaluate() const {
     return left_->evaluate() - right_->evaluate();

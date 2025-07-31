@@ -5,7 +5,7 @@
 
 class Subtract : public BinaryOperation {
 public:
-    Subtract(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right);
+    Subtract(std::unique_ptr<Expression> left_, std::unique_ptr<Expression> right_);
 
     Value evaluate() const override;
     std::string toString() const override;

@@ -1,22 +1,33 @@
 #include <iostream>
 #include "constant.h"
+#include "add.h"
 #include "multiply.h"
-#include "divide.h"
+#include "subtract.h"
 
 int main() {
-    auto mulExpr = std::make_unique<Multiply>(
-        std::make_unique<Constant>(6),
+    // 8 * 7
+    auto multInner = std::make_unique<Multiply>(
+        std::make_unique<Constant>(8),
         std::make_unique<Constant>(7)
     );
 
-    std::cout << mulExpr->toString() << " = " << mulExpr->evaluate() << std::endl;
-
-    auto divExpr = std::make_unique<Divide>(
-        std::make_unique<Constant>(20),
-        std::make_unique<Constant>(5)
+    // 3 - (8 * 7)
+    auto sub = std::make_unique<Subtract>(
+        std::make_unique<Constant>(3),
+        std::move(multInner)
     );
 
-    std::cout << divExpr->toString() << " = " << divExpr->evaluate() << std::endl;
+    // 20 * (3 - 8 * 7)
+    auto multOuter = std::make_unique<Multiply>(
+        std::make_unique<Constant>(20),
+        std::move(sub)
+    );
 
-    return 0;
+    // 10 + [результат]
+    auto expr = std::make_unique<Add>(
+        std::make_unique<Constant>(10),
+        std::move(multOuter)
+    );
+
+    std::cout << expr->toString() << "=" << expr->evaluate() << std::endl;
 }

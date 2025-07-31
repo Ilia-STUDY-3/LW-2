@@ -6,10 +6,10 @@
 
 class BinaryOperation : public Expression {
 public:
-    BinaryOperation(std::unique_ptr<Expression> left, std::unique_ptr<Expression> right);
+    BinaryOperation(std::unique_ptr<Expression> left_, std::unique_ptr<Expression> right_);
 
-    void setLeft(std::unique_ptr<Expression> left);
-    void setRight(std::unique_ptr<Expression> right);
+    void setLeft(std::unique_ptr<Expression> left_);
+    void setRight(std::unique_ptr<Expression> right_);
 
     const Expression* getLeft() const;
     const Expression* getRight() const;
